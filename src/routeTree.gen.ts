@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsSalesBiDashboardRouteImport } from './routes/projects/sales-bi-dashboard'
 import { Route as ProjectsRecruitmentAppRouteImport } from './routes/projects/recruitment-app'
 import { Route as ProjectsFoodDeliveryRouteImport } from './routes/projects/food-delivery'
 
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -38,12 +44,14 @@ const ProjectsFoodDeliveryRoute = ProjectsFoodDeliveryRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/projects/food-delivery': typeof ProjectsFoodDeliveryRoute
   '/projects/recruitment-app': typeof ProjectsRecruitmentAppRoute
   '/projects/sales-bi-dashboard': typeof ProjectsSalesBiDashboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/projects/food-delivery': typeof ProjectsFoodDeliveryRoute
   '/projects/recruitment-app': typeof ProjectsRecruitmentAppRoute
   '/projects/sales-bi-dashboard': typeof ProjectsSalesBiDashboardRoute
@@ -51,6 +59,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/projects/food-delivery': typeof ProjectsFoodDeliveryRoute
   '/projects/recruitment-app': typeof ProjectsRecruitmentAppRoute
   '/projects/sales-bi-dashboard': typeof ProjectsSalesBiDashboardRoute
@@ -59,18 +68,21 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/analytics'
     | '/projects/food-delivery'
     | '/projects/recruitment-app'
     | '/projects/sales-bi-dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/analytics'
     | '/projects/food-delivery'
     | '/projects/recruitment-app'
     | '/projects/sales-bi-dashboard'
   id:
     | '__root__'
     | '/'
+    | '/analytics'
     | '/projects/food-delivery'
     | '/projects/recruitment-app'
     | '/projects/sales-bi-dashboard'
@@ -78,6 +90,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyticsRoute: typeof AnalyticsRoute
   ProjectsFoodDeliveryRoute: typeof ProjectsFoodDeliveryRoute
   ProjectsRecruitmentAppRoute: typeof ProjectsRecruitmentAppRoute
   ProjectsSalesBiDashboardRoute: typeof ProjectsSalesBiDashboardRoute
@@ -85,6 +98,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -118,6 +138,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyticsRoute: AnalyticsRoute,
   ProjectsFoodDeliveryRoute: ProjectsFoodDeliveryRoute,
   ProjectsRecruitmentAppRoute: ProjectsRecruitmentAppRoute,
   ProjectsSalesBiDashboardRoute: ProjectsSalesBiDashboardRoute,
