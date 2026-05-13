@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Moon, Sun, Github, Linkedin } from "lucide-react";
+import { Moon, Sun, Github, Linkedin, BarChart3 } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
+import { Link } from "@tanstack/react-router";
 
 const links = [
   { href: "#about", label: "About" },
@@ -32,6 +33,13 @@ export function Navbar() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
+          <Link
+            to="/analytics"
+            className="p-2 rounded-md hover:bg-muted transition"
+            aria-label="Analytics"
+          >
+            <BarChart3 className="w-4 h-4" />
+          </Link>
           <a
             href="https://github.com/Chiheb13"
             target="_blank"
