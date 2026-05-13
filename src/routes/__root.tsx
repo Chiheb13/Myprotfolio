@@ -76,7 +76,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const GOOGLE_ANALYTICS_ID = "G-5BRVX7K2Q";
+const GOOGLE_ANALYTICS_ID = "G-5BRV4X7KZQ";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
