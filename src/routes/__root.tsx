@@ -76,7 +76,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const GOOGLE_ANALYTICS_ID = "G-XXXXXXXXXX"; // Replace with your Google Analytics ID
+const GOOGLE_ANALYTICS_ID = "G-5BRVX7K2Q";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
